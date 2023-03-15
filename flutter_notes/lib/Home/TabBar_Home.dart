@@ -2,21 +2,22 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_notes/Flutter%20UI/ButtomNavigation/Ani_BottomNavBar.dart.dart';
 
-import '../ButtomNavigation/Bottom_NavigationBar.dart';
-import '../ButtomNavigation/root_Screen.dart';
-import '../Buttons.dart';
-import 'screen_one.dart';
+import '../Flutter UI/screens/MainScreen/Main_Screen.dart';
+import '../Flutter UI/ButtomNavigation/Bottom_NavigationBar.dart';
+import '../Flutter UI/ButtomNavigation/root_Screen.dart';
+import '../Home_Screen_Buttons.dart';
+import '../Flutter UI/TabBarView/screen_one.dart';
 
 enum SampleItem { itemOne, itemTwo, itemThree }
 
-class TabBarFour extends StatefulWidget {
-  const TabBarFour({super.key});
+class TabBarHome extends StatefulWidget {
+  const TabBarHome({super.key});
 
   @override
-  State<TabBarFour> createState() => _TabBarFourState();
+  State<TabBarHome> createState() => _TabBarHomeState();
 }
 
-class _TabBarFourState extends State<TabBarFour>
+class _TabBarHomeState extends State<TabBarHome>
     with SingleTickerProviderStateMixin {
   SampleItem? selectedMenu;
   @override
@@ -85,10 +86,11 @@ class _TabBarFourState extends State<TabBarFour>
               },
               itemBuilder: (BuildContext context) =>
                   <PopupMenuEntry<SampleItem>>[
-                PopUp(context, "Animated BottomNavBar", MyAniBottomNavBar()),
-                PopUp(context, "Root Screen", RootScreen()),
+                PopUp(context, "Animated BottomNavBar",
+                    const MyAniBottomNavBar()),
+                PopUp(context, "Root Screen", const RootScreen()),
                 PopUp(context, "My BottomNavBar",
-                    MyBottomNavigationBar(title: '')),
+                    const MyBottomNavigationBar(title: '')),
               ],
             ),
           ],
@@ -104,8 +106,8 @@ class _TabBarFourState extends State<TabBarFour>
                     Colors.purple.withOpacity(0.60),
                     Colors.purple.withOpacity(1),
                   ], begin: Alignment.bottomRight, end: Alignment.topRight),
-                  boxShadow: [
-                    const BoxShadow(blurRadius: 30.0, color: Colors.purple),
+                  boxShadow: const [
+                    BoxShadow(blurRadius: 30.0, color: Colors.purple),
                   ],
                   borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(20),
@@ -125,6 +127,7 @@ class _TabBarFourState extends State<TabBarFour>
       value: SampleItem.itemThree,
       child: GestureDetector(
           onTap: () {
+            Navigator.pop(context);
             Navigator.push(
                 context, MaterialPageRoute(builder: ((context) => widget)));
           },
@@ -155,10 +158,10 @@ class _TabBarFourState extends State<TabBarFour>
           text: 'Buttons',
         ),
         Tab(
-          text: 'Top charts',
+          text: 'Screens',
         ),
         Tab(
-          text: 'Children',
+          text: 'Login Page',
         ),
         Tab(
           text: 'Events',
@@ -178,7 +181,7 @@ class _TabBarFourState extends State<TabBarFour>
       child: TabBarView(
         children: [
           MyButtons(),
-          Icon(Icons.chat_rounded),
+          MainScreen(),
           Icon(Icons.child_friendly),
           Icon(Icons.event),
           Icon(Icons.workspace_premium),

@@ -2,17 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_notes/Flutter%20UI/Buttons/Elevated_Button.dart';
 
-import 'Buttons/Common_Button.dart';
-import 'Buttons/Custom_Buttton.dart';
-import 'Buttons/GF_Button.dart';
-import 'Buttons/DropDown_Button.dart';
-import 'Buttons/FloatingAction_Button.dart';
-import 'Buttons/Icon_Button.dart';
-import 'Buttons/Outlined_Button.dart';
-import 'Buttons/PopUpMenu_Button.dart';
-import 'Buttons/Text_Button.dart';
-import 'Drawer/Drawer.dart';
-import 'TabBarView/TabBarView.dart';
+import 'Flutter UI/Buttons/Common_Button.dart';
+import 'Flutter UI/Buttons/Custom_Buttton.dart';
+import 'Flutter UI/Buttons/GF_Button.dart';
+import 'Flutter UI/Buttons/DropDown_Button.dart';
+import 'Flutter UI/Buttons/FloatingAction_Button.dart';
+import 'Flutter UI/Buttons/Icon_Button.dart';
+import 'Flutter UI/Buttons/Outlined_Button.dart';
+import 'Flutter UI/Buttons/PopUpMenu_Button.dart';
+import 'Flutter UI/Buttons/Text_Button.dart';
+import 'Flutter UI/Drawer/Drawer.dart';
+import 'Flutter UI/TabBarView/TabBarView.dart';
 
 class MyButtons extends StatefulWidget {
   const MyButtons({super.key});

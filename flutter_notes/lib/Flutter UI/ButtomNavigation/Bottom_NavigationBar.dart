@@ -44,6 +44,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Bottom Navigation Bar"),
+        backgroundColor: Color.fromARGB(255, 12, 49, 160),
       ),
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Button _Widget/NavBarWidget/Bottom_NavBar_Widget.dart';
 import '../Buttons/Common_Button.dart';
+import '../TabBarView/screen_one.dart';
 
 class MyAniBottomNavBar extends StatefulWidget {
   const MyAniBottomNavBar({Key? key}) : super(key: key);
@@ -14,7 +15,9 @@ class _MyAniBottomNavBarState extends State<MyAniBottomNavBar> {
   int current_index = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final List<Widget> pages = [
-    const MyCommonButton(),
+    const ScreenOne(
+      title: '',
+    ),
     const MyCommonButton(),
     const MyCommonButton(),
     const MyCommonButton(),
@@ -30,9 +33,6 @@ class _MyAniBottomNavBarState extends State<MyAniBottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Demo"),
-      ),
       body: pages[current_index],
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,

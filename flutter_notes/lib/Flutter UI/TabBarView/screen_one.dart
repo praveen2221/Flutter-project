@@ -23,7 +23,7 @@ class _ScreenOneState extends State<ScreenOne>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Color.fromRGBO(33, 150, 243, 1),
         title: const Text("Tab Bar"),
         bottom: TabBar(
           controller: _tabController,

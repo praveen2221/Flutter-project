@@ -14,11 +14,15 @@ class RootScreen extends StatefulWidget {
 class _RootScreenState extends State<RootScreen> {
   int selectedIndex = 0;
   final List<Widget> pageOptions = [
-    const MyTabBarButton1(
-      title: '',
+    Center(
+      child: Icon(Icons.home_max_rounded),
     ),
-    const DateTimePickerPage(),
-    const MyTextFormField(),
+    Center(
+      child: Icon(Icons.view_agenda),
+    ),
+    Center(
+      child: Icon(Icons.settings),
+    ),
   ];
 
   @override

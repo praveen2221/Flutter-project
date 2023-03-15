@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Flutter UI/ButtomNavigation/BottomNavigation2.dart';
+import 'Home/BottomNavigation2.dart';
 
 void main() {
   runApp(const MyApp());

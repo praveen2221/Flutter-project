@@ -1,6 +1,8 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 
+import '../DateTimePicker/Date_Time_Picker.dart';
+import '../Text_Form_Field.dart/Text_form_field.dart';
 import 'TabBarButton/TabBar_Button1.dart';
 
 class MyTabBarView extends StatefulWidget {
@@ -31,13 +33,13 @@ class _MyTabBarViewState extends State<MyTabBarView>
           controller: _tabController,
           tabs: const <Widget>[
             Tab(
-              icon: Icon(Icons.cloud_outlined),
+              icon: Icon(Icons.login_sharp),
             ),
             Tab(
-              icon: Icon(Icons.beach_access_sharp),
+              icon: Icon(Icons.check_box),
             ),
             Tab(
-              icon: Icon(Icons.brightness_5_sharp),
+              icon: Icon(Icons.calendar_view_month),
             ),
           ],
         ),
@@ -47,15 +49,15 @@ class _MyTabBarViewState extends State<MyTabBarView>
           controller: _tabController,
           children: const <Widget>[
             Center(
+              child: MyTextFormField(),
+            ),
+            Center(
               child: MyTabBarButton1(
-                title: 'screenOne',
+                title: 'screen two',
               ),
             ),
             Center(
-              child: Text("It's rainy here"),
-            ),
-            Center(
-              child: Text("It's sunny here"),
+              child: DateTimePickerPage(),
             ),
           ],
         ),
