@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
 import '../Bottom_sheet.dart';
+import '../DataTable/Data_Table.dart';
+import '../Expanded/Expanded.dart';
 import '../Expansion Panel/ExpansionPanel.dart';
 import '../GridView/Grid_View.dart';
 import '../GridView/ListView.dart';
 import '../Icons/Icons.dart';
 import '../Images/Image.dart';
+import '../LinearProgressBar/LinearProgress_Bar.dart';
 import '../ShowDailogBox/Popup_Screen.dart';
 import '../ShowDailogBox/ShowDailog_Box.dart';
 import '../Snack_Bar.dart';
+import '../ToolTip/Tool_Tip.dart';
+import '../cart/Cart.dart';
 import '../chip/chip.dart';
 
 class MainScreen extends StatefulWidget {
@@ -36,7 +41,18 @@ class _MainScreenState extends State<MainScreen> {
               Buttons(context, "Images", const MyImages()),
               Buttons(context, "chip", MyChip()),
               Buttons(context, "GridView", MyGridView()),
-              Buttons(context, "List View", MyListView())
+              Buttons(context, "List View", MyListView()),
+              Buttons(context, "DataTable", MyDataTable()),
+              Buttons(context, "Expanded", MyExpanded()),
+              const Divider(
+                thickness: 3,
+                indent: 10,
+                endIndent: 10,
+              ),
+              Buttons(context, "LinearProgessBar", ProgressIndicatorExample()),
+              Buttons(context, "ToolTip", TooltipSample()),
+              Buttons(context, "Cart", MyCart()),
+              SizedBox(height: 30),
             ],
           ),
         ),

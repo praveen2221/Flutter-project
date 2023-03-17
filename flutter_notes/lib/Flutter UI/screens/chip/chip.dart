@@ -44,7 +44,40 @@ class _MyChipState extends State<MyChip> {
             ),
             SizedBox(height: 16.0),
             Text('Selected Chips: ${_selectedChips.join(", ")}'),
-           
+            Chip(
+              avatar: CircleAvatar(
+                backgroundColor: Colors.grey[800],
+                child: Text('A'),
+              ),
+              label: Text('Avatar Chip'),
+              labelStyle: TextStyle(color: Colors.white),
+              backgroundColor: Colors.grey[600],
+              deleteIcon: Icon(Icons.cancel),
+              onDeleted: () {
+                // code to handle chip deletion
+              },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Chip(
+                  label: Text('Chip 1'),
+                  backgroundColor: Colors.red,
+                ),
+                Chip(
+                  label: Text('Chip 2'),
+                  backgroundColor: Colors.blue,
+                ),
+                Chip(
+                  label: Text('Chip 3'),
+                  backgroundColor: Colors.green,
+                ),
+                Chip(
+                  label: Text('Chip 4'),
+                  backgroundColor: Colors.orange,
+                ),
+              ],
+            )
           ],
         ),
       ),
