@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_notes/Flutter%20UI/ButtomNavigation/Ani_BottomNavBar.dart.dart';
 
+import '../Animation/Animation_button.dart';
+import '../Flutter UI/Project Screens/Project_screen_buttons.dart';
 import '../Flutter UI/screens/MainScreen/Main_Screen.dart';
 import '../Flutter UI/ButtomNavigation/Bottom_NavigationBar.dart';
 import '../Flutter UI/ButtomNavigation/root_Screen.dart';
@@ -107,7 +109,7 @@ class _TabBarHomeState extends State<TabBarHome>
                     Colors.purple.withOpacity(1),
                   ], begin: Alignment.bottomRight, end: Alignment.topRight),
                   boxShadow: const [
-                    BoxShadow(blurRadius: 30.0, color: Colors.purple),
+                    BoxShadow(blurRadius: 200.0, color: Colors.purple),
                   ],
                   borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(20),
@@ -161,10 +163,10 @@ class _TabBarHomeState extends State<TabBarHome>
           text: 'Screens',
         ),
         Tab(
-          text: 'Login Page',
+          text: 'Project screens',
         ),
         Tab(
-          text: 'Events',
+          text: 'Animation screens',
         ),
         Tab(
           text: 'Premium',
@@ -182,8 +184,8 @@ class _TabBarHomeState extends State<TabBarHome>
         children: [
           MyButtons(),
           MainScreen(),
-          Icon(Icons.child_friendly),
-          Icon(Icons.event),
+          ProjectScreenButtons(),
+          AnimationMainScreen(),
           Icon(Icons.workspace_premium),
           Icon(Icons.category),
         ],

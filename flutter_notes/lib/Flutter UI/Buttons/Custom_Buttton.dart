@@ -26,6 +26,8 @@ class _MyCustomButtonState extends State<MyCustomButton> {
                 onPressed: () {},
                 color: Colors.black,
                 textColor: Colors.yellow,
+                buttonwidth: double.infinity,
+                borderRadius: BorderRadius.circular(30),
               ),
             ],
           ),

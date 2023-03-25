@@ -25,32 +25,45 @@ class _MyButtonsState extends State<MyButtons> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Buttons(context, 'Text Button', const MyTextButton(title: '')),
-              Buttons(
-                  context, "Elevant Button", const MyElevatedButton(title: '')),
-              Buttons(context, 'Outlined Button',
-                  const MyOutLinedButtons(title: '')),
-              Buttons(context, "Icon Button", const MyIconButtons(title: '')),
-              Buttons(context, "DropDown Button",
-                  const MyDropDownButtons(title: '')),
-              Buttons(context, "PopUpMenuButton",
-                  const MyPopUpMenuButtons(title: '')),
-              Buttons(context, "FloatingActionButton Button",
-                  const MyFloatingActionButtons(title: '')),
-              Buttons(context, "GF Button", const MyGfButton(title: '')),
-              Buttons(
-                  context, "Custom Button", const MyCustomButton(title: '')),
-              Buttons(context, "Common Button", const MyCommonButton()),
-              Buttons(context, "Drawer Button", const MyDrawer(title: '')),
-              Buttons(context, "TabBarView", const MyTabBarView(title: '')),
-            ],
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+              Color.fromARGB(255, 223, 155, 235).withOpacity(0.80),
+              Colors.white.withOpacity(0.20),
+            ], begin: Alignment.topCenter, end: Alignment.center)),
           ),
-        ),
+          SingleChildScrollView(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Buttons(
+                      context, 'Text Button', const MyTextButton(title: '')),
+                  Buttons(context, "Elevant Button",
+                      const MyElevatedButton(title: '')),
+                  Buttons(context, 'Outlined Button',
+                      const MyOutLinedButtons(title: '')),
+                  Buttons(
+                      context, "Icon Button", const MyIconButtons(title: '')),
+                  Buttons(context, "DropDown Button",
+                      const MyDropDownButtons(title: '')),
+                  Buttons(context, "PopUpMenuButton",
+                      const MyPopUpMenuButtons(title: '')),
+                  Buttons(context, "FloatingActionButton Button",
+                      const MyFloatingActionButtons(title: '')),
+                  Buttons(context, "GF Button", const MyGfButton(title: '')),
+                  Buttons(context, "Custom Button",
+                      const MyCustomButton(title: '')),
+                  Buttons(context, "Common Button", const MyCommonButton()),
+                  Buttons(context, "Drawer Button", const MyDrawer(title: '')),
+                  Buttons(context, "TabBarView", const MyTabBarView(title: '')),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
