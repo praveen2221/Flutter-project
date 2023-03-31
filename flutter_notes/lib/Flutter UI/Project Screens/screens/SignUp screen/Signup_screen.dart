@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../Button _Widget/CustomButton.dart';
-import '../../../Home/BottomNavigation2.dart';
+import '../../../../Button _Widget/CustomButton.dart';
+import '../../../../Home/BottomNavigation2.dart';
 
 class MySignUpScreen extends StatefulWidget {
   const MySignUpScreen({super.key});
@@ -12,7 +13,10 @@ class MySignUpScreen extends StatefulWidget {
 }
 
 class _MySignUpScreenState extends State<MySignUpScreen> {
-  TextEditingController textEditingController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _passwordVisible = true;
   bool _passwordVisibles = true;
@@ -60,7 +64,7 @@ class _MySignUpScreenState extends State<MySignUpScreen> {
 
     if (values == null || values.isEmpty) {
       return 'Field cannot be empty';
-    } else if (textEditingController.text != values) {
+    } else if (passwordController.text != values) {
       print(values);
       return "password not matching $values";
     }
@@ -70,6 +74,7 @@ class _MySignUpScreenState extends State<MySignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
@@ -85,13 +90,10 @@ class _MySignUpScreenState extends State<MySignUpScreen> {
             )),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            newMethod(),
-          ]),
-        ),
+      body: SizedBox(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          newMethod(),
+        ]),
       ),
     );
   }
@@ -130,7 +132,7 @@ class _MySignUpScreenState extends State<MySignUpScreen> {
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey)),
               ),
-
+              controller: emailController,
               validator: (value) => validateEmail(value),
               // onSaved: (value) => _email = value,
             ),
@@ -164,7 +166,7 @@ class _MySignUpScreenState extends State<MySignUpScreen> {
                     borderSide: BorderSide(color: Colors.grey)),
               ),
               obscureText: _passwordVisible,
-              controller: textEditingController,
+              controller: passwordController,
               validator: (value) => passwordValidator(value),
               // onSaved: (value) => _password = value,
             ),
@@ -201,13 +203,32 @@ class _MySignUpScreenState extends State<MySignUpScreen> {
                     borderSide: BorderSide(color: Colors.grey)),
               ),
               obscureText: _passwordVisibles,
+              controller: confirmPasswordController,
               validator: (value) => confirmPasswordValidator(value),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: CustomButton(
                 text: "Submit >",
-                onPressed: validateAndSave,
+                onPressed: () {
+                  String email = emailController.text.trim();
+                  String password = passwordController.text.trim();
+                  String confirmPassword =
+                      confirmPasswordController.text.trim();
+                  if (email.isNotEmpty && password.isNotEmpty) {
+                    setState(() {
+                      emailController.text = "";
+                      passwordController.text = "";
+                      confirmPasswordController.text = "";
+                    });
+                    FirebaseFirestore.instance.collection("User").add({
+                      "email": email,
+                      "password": password,
+                      "confirmPassword": confirmPassword,
+                    });
+                  }
+                  validateAndSave();
+                },
                 color: Colors.black,
                 buttonwidth: double.infinity,
                 borderRadius: BorderRadius.circular(10),
@@ -219,7 +240,7 @@ class _MySignUpScreenState extends State<MySignUpScreen> {
             Center(
               child: RichText(
                 text: const TextSpan(
-                    text: 'Don\'t have an account?',
+                    text: 'Already have an account?',
                     style: TextStyle(
                         color: Color.fromARGB(255, 98, 236, 183), fontSize: 15),
                     children: <TextSpan>[

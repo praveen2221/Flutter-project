@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 
 import '../DateTimePicker/Date_Time_Picker.dart';
-import '../Text_Form_Field.dart/Text_form_field.dart';
+
+import '../Project Screens/screens/SignUp screen/Text_form_field.dart';
 import 'TabBarButton/TabBar_Button1.dart';
 
 class MyTabBarView extends StatefulWidget {
@@ -48,9 +49,7 @@ class _MyTabBarViewState extends State<MyTabBarView>
         child: TabBarView(
           controller: _tabController,
           children: const <Widget>[
-            Center(
-              child: MyTextFormField(),
-            ),
+            MyTextFormField(),
             Center(
               child: MyTabBarButton1(
                 title: 'screen two',

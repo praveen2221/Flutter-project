@@ -12,16 +12,20 @@ class AppPages {
   static const initial = Routes.splash;
 
   static final routes = [
-      GetPage(
+    GetPage(
         name: _Paths.dashboard,
         page: () => DashboardScreen(),
         binding: DashboardBinding(),
-        children: [ 
-            GetPage(
+        children: [
+          GetPage(
             name: _Paths.home,
             page: () => const HomeView(),
           ),
-        ] ),
+          GetPage(
+            name: _Paths.splash,
+            page: () => const SplashView(),
+          ),
+        ]),
     GetPage(
       name: _Paths.splash,
       page: () => const SplashView(),

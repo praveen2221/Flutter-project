@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Signup_screen.dart';
+
 class MyTextFormField extends StatefulWidget {
   const MyTextFormField({super.key});
 
@@ -62,7 +64,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(left: 15.0, right: 15.0),
+          padding: const EdgeInsets.only(left: 15.0, right: 15.0),
           child: Form(
             key: _formKey,
             child: Column(
@@ -71,24 +73,51 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
               children: <Widget>[
                 // input field for email
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(labelText: 'Email'),
                   validator: (value) => validateEmail(value),
                   // onSaved: (value) => _email = value,
                 ),
                 // input field for password
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Password'),
+                  decoration: const InputDecoration(labelText: 'Password'),
                   obscureText: true,
                   validator: (value) => passwordValidator(value),
                   // onSaved: (value) => _password = value,
                 ),
                 ElevatedButton(
                   onPressed: validateAndSave,
-                  child: Text(
+                  child: const Text(
                     'Login',
                     style: TextStyle(fontSize: 20.0),
                   ),
                 ),
+                const SizedBox(height: 20),
+                Center(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MySignUpScreen()));
+                    },
+                    child: RichText(
+                      text: const TextSpan(
+                          text: 'Don\'t have an account?',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 98, 236, 183),
+                              fontSize: 15),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: ' Sign in',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            )
+                          ]),
+                    ),
+                  ),
+                )
               ],
             ),
           ),

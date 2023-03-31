@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../APICalling/class/Category.dart';
+import '../../../../APICalling/class/Category.dart';
 
 class MyScreenTwo extends StatefulWidget {
   const MyScreenTwo({super.key});
@@ -49,10 +49,16 @@ class _MyScreenTwoState extends State<MyScreenTwo> {
     // Perform the search logic here, using the query parameter
     // to filter items and update the _searchResults list
     setState(() {
-      _searchResults = categoryList
-          .where((category) =>
-              category.categoryName.toLowerCase().contains(query.toLowerCase()))
-          .toList();
+      if (query != "") {
+        _searchResults = categoryList
+            .where((category) => category.categoryName
+                .toLowerCase()
+                .contains(query.toLowerCase()))
+            .toList();
+        categoryList = _searchResults;
+      } else {
+        getItems();
+      }
     });
   }
 
@@ -75,7 +81,9 @@ class _MyScreenTwoState extends State<MyScreenTwo> {
                 const SizedBox(
                     height: 30), // Add some padding for the search bar
                 TextField(
-                  onChanged: (value) => _searchForItems(value),
+                  onChanged: (value) {
+                    _searchForItems(value);
+                  },
                   decoration: InputDecoration(
                     filled: true, // Enable filling of the decoration background
                     fillColor: Colors
@@ -128,49 +136,39 @@ class _MyScreenTwoState extends State<MyScreenTwo> {
                   ),
                 ),
                 Expanded(
-                  child: _searchResults.isEmpty
-                      ? ListView.builder(
-                          itemCount: categoryList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                shadowColor: Colors.black,
-                                elevation: 10,
-                                child: ListTile(
-                                    leading: const Icon(
-                                      Icons.umbrella_outlined,
-                                      color: Colors.purple,
-                                    ),
-                                    trailing: InkWell(
-                                      onTap: () {},
-                                      child: const Icon(
-                                        Icons.delete,
-                                        color: Colors.greenAccent,
-                                      ),
-                                    ),
-                                    title: Text(
-                                        '${categoryList[index].categoryName}'),
-                                    subtitle: Text(
-                                        '${categoryList[index].categoryStatus}'),
-                                    onTap: () {
-                                      /* react to the tile being tapped */
-                                    }),
+                    child: ListView.builder(
+                        itemCount: categoryList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                            );
-                          })
-                      : ListView.builder(
-                          itemCount: _searchResults.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              title:
-                                  Text('${_searchResults[index].categoryName}'),
-                            );
-                          }),
-                ),
+                              shadowColor: Colors.black,
+                              elevation: 10,
+                              child: ListTile(
+                                  leading: const Icon(
+                                    Icons.umbrella_outlined,
+                                    color: Colors.purple,
+                                  ),
+                                  trailing: InkWell(
+                                    onTap: () {},
+                                    child: const Icon(
+                                      Icons.delete,
+                                      color: Colors.greenAccent,
+                                    ),
+                                  ),
+                                  title: Text(
+                                      '${categoryList[index].categoryName}'),
+                                  subtitle: Text(
+                                      '${categoryList[index].categoryStatus}'),
+                                  onTap: () {
+                                    /* react to the tile being tapped */
+                                  }),
+                            ),
+                          );
+                        })),
               ],
             ),
           ),

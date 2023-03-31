@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../Flutter UI/Drawer/Drawer.dart';
 import '../Flutter UI/TabBarView/TabBarView.dart';
@@ -30,37 +31,51 @@ class _CustomButtomScreenState extends State<CustomButtomScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        elevation: 4.0,
-        child: const Icon(Icons.add),
-        onPressed: () {},
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        color: selectedIndex == 0
-            ? Colors.purple
-            : selectedIndex == 3
-                ? Colors.blue
-                : Colors.black,
-        shape: const CircularNotchedRectangle(),
-        child: Container(
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              BuildContainer(Icons.home, 0),
-              BuildContainer(Icons.heat_pump_rounded, 1),
-              BuildContainer(Icons.settings, 2),
-              BuildContainer(Icons.lock, 3),
-            ],
+    return WillPopScope(
+      onWillPop: () async {
+        // Check if the user is on the home page
+        if (Navigator.of(context).canPop()) {
+          // If not, allow the default back button behavior
+          return true;
+        } else {
+          // If on the home page, close the app
+          SystemNavigator.pop();
+          return false;
+        }
+      },
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          elevation: 4.0,
+          child: const Icon(Icons.add),
+          onPressed: () {},
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomAppBar(
+          color: selectedIndex == 0
+              ? Colors.purple
+              : selectedIndex == 3
+                  ? Colors.blue
+                  : Colors.black,
+          shape: const CircularNotchedRectangle(),
+          child: Container(
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20))),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                BuildContainer(Icons.home, 0),
+                BuildContainer(Icons.heat_pump_rounded, 1),
+                BuildContainer(Icons.settings, 2),
+                BuildContainer(Icons.lock, 3),
+              ],
+            ),
           ),
         ),
+        body: _widgetOptions[selectedIndex],
       ),
-      body: _widgetOptions[selectedIndex],
     );
   }
 

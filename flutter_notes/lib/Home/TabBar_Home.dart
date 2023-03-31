@@ -4,13 +4,14 @@ import 'package:flutter_notes/Flutter%20UI/ButtomNavigation/Ani_BottomNavBar.dar
 
 import '../Animation/Animation_button.dart';
 import '../Flutter UI/Project Screens/Project_screen_buttons.dart';
+import '../Flutter UI/Project Screens/screens/Signup and Signin Screen/Profile.dart';
 import '../Flutter UI/screens/MainScreen/Main_Screen.dart';
 import '../Flutter UI/ButtomNavigation/Bottom_NavigationBar.dart';
 import '../Flutter UI/ButtomNavigation/root_Screen.dart';
 import '../Home_Screen_Buttons.dart';
 import '../Flutter UI/TabBarView/screen_one.dart';
 
-enum SampleItem { itemOne, itemTwo, itemThree }
+enum SampleItem { item }
 
 class TabBarHome extends StatefulWidget {
   const TabBarHome({super.key});
@@ -88,6 +89,7 @@ class _TabBarHomeState extends State<TabBarHome>
               },
               itemBuilder: (BuildContext context) =>
                   <PopupMenuEntry<SampleItem>>[
+                PopUp(context, "Profile", const MyProfile()),
                 PopUp(context, "Animated BottomNavBar",
                     const MyAniBottomNavBar()),
                 PopUp(context, "Root Screen", const RootScreen()),
@@ -126,7 +128,7 @@ class _TabBarHomeState extends State<TabBarHome>
   PopupMenuItem<SampleItem> PopUp(
       BuildContext context, String text, Widget widget) {
     return PopupMenuItem<SampleItem>(
-      value: SampleItem.itemThree,
+      value: SampleItem.item,
       child: GestureDetector(
           onTap: () {
             Navigator.pop(context);

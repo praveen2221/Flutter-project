@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'Flutter UI/Project Screens/screens/Signup_screen.dart';
+import 'Flutter UI/Project Screens/screens/Signup and Signin Screen/Signin_Screen.dart';
 import 'Home/BottomNavigation2.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -25,9 +29,19 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
+        drawerTheme: const DrawerThemeData(scrimColor: Colors.transparent),
       ),
-      home: const CustomButtomScreen(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return const CustomButtomScreen();
+          } else {
+            return const MySigninScreen();
+          }
+        },
+      ),
     );
   }
 }

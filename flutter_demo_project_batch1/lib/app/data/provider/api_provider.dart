@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as G;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
+import 'package:http/http.dart' as http;
 import '../../routes/app_pages.dart';
 import '../../utils/snack_bar_utils.dart';
 
@@ -18,25 +18,24 @@ class APIProvider {
   // static final _singleton = APIProvider();
   static APIProvider get instance => APIProvider();
 
-  APIProvider() {
-    _client = Dio(BaseOptions(baseUrl: 'https://test.com/api'));
-    _client.interceptors.add(PrettyDioLogger(
-        requestHeader: true,
-        requestBody: true,
-        responseBody: false,
-        responseHeader: false));
-    _client.interceptors.add(AuthInterceptor());
- 
+  // APIProvider() {
+  //    final response = await http
+  //       .get(Uri.parse('http://demo6840779.mockable.io/businessCategoryList'));
+  // }
+
+  Future get(String endPoint) async {
+    final response = await http.get(Uri.parse(endPoint));
+    return response;
   }
 
-  Future<AppResponse> get(String endPoint) async {
-    try {
-      final response = await _client.get(endPoint);
-      return handleAPIResponse(response);
-    } catch (e) {
-      return handleAPIException(e);
-    }
-  }
+  // Future<AppResponse> get(String endPoint) async {
+  //   try {
+  //     final response = await _client.get(endPoint);
+  //     return handleAPIResponse(response);
+  //   } catch (e) {
+  //     return handleAPIException(e);
+  //   }
+  // }
 
   Future<AppResponse> post(String endPoint, dynamic body) async {
     try {
