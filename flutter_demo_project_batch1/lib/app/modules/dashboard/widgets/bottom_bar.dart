@@ -1,20 +1,20 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_demo_project_batch1/app/modules/Tabbar/views/tab_bar.dart';
+import 'package:flutter_demo_project_batch1/app/modules/Tabbar/widget/tabbar_widget.dart';
 import 'package:flutter_demo_project_batch1/app/modules/home/views/home_view_new.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../home/controllers/home_controller.dart';
+import '../../splash/views/splash_view.dart';
 import '../dashboard_controller.dart';
 
 class BottomNavBar extends GetView<HomeController> {
   BottomNavBar({Key? key}) : super(key: key);
-  final dashboardController = Get.find<DashboardController>();
+  final dashboardController = Get.put(DashboardController());
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-        color: Colors.green,
+        color: Colors.purple,
         shape: const CircularNotchedRectangle(),
         child: Row(
           mainAxisSize: MainAxisSize.max,
@@ -23,22 +23,25 @@ class BottomNavBar extends GetView<HomeController> {
             Container(
               margin: const EdgeInsets.only(left: 8.0, top: 4.0),
               child: IconButton(
-                  icon:Icon( Icons.home, color: Colors.white, ),
+                  icon: const Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
                   onPressed: () {
-                   
-                    Navigator.push(
-                        dashboardController.context!,
-                        MaterialPageRoute(
-                            builder: (_) => const HomeView()));
+                    Navigator.push(dashboardController.context!,
+                        MaterialPageRoute(builder: (_) => TabBarHome()));
                   }),
             ),
             Container(
               margin: const EdgeInsets.only(top: 4.0),
               child: IconButton(
-                icon: Icon( Icons.heat_pump_rounded, color: Colors.white, ),
+                icon: const Icon(
+                  Icons.heat_pump_rounded,
+                  color: Colors.white,
+                ),
                 onPressed: () {
-                  Navigator.of(dashboardController.context!).push(
-                      MaterialPageRoute(builder: (_) => HomeView()));
+                  Navigator.of(dashboardController.context!)
+                      .push(MaterialPageRoute(builder: (_) => HomeView()));
                 },
               ),
             ),
@@ -46,20 +49,26 @@ class BottomNavBar extends GetView<HomeController> {
             Container(
               margin: const EdgeInsets.only(top: 4.0),
               child: IconButton(
-                icon: Icon( Icons.settings, color: Colors.white, ),
+                icon: const Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                ),
                 onPressed: () {
-                   Navigator.of(dashboardController.context!).push(
-                      MaterialPageRoute(builder: (_) => HomeView()));
+                  Navigator.of(dashboardController.context!)
+                      .push(MaterialPageRoute(builder: (_) => HomeView()));
                 },
               ),
             ),
             Container(
               margin: const EdgeInsets.only(right: 8.0, top: 4.0),
               child: IconButton(
-                icon: Icon( Icons.lock, color: Colors.white, ),
+                icon: const Icon(
+                  Icons.lock,
+                  color: Colors.white,
+                ),
                 onPressed: () {
-                   Navigator.of(dashboardController.context!).push(
-                      MaterialPageRoute(builder: (_) => HomeView()));
+                  Navigator.of(dashboardController.context!)
+                      .push(MaterialPageRoute(builder: (_) => HomeView()));
                 },
               ),
             ),

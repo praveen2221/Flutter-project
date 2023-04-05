@@ -29,14 +29,15 @@ class DashboardScreen extends GetView<DashboardController> {
               controller.context = navigatorState.context;
               return [
                 MaterialPageRoute(
-                    builder: ((context) => AppPages.routes[0].children
-                        .firstWhere((element) => element.name == Routes.home)
+                    builder: ((context) => AppPages.routes[1].children
+                        .firstWhere(
+                            (element) => element.name == Routes.tabbarhome)
                         .page()))
               ];
             },
             onGenerateRoute: ((routeSettings) {
               return MaterialPageRoute(
-                builder: (context) => AppPages.routes[0].children
+                builder: (context) => AppPages.routes[1].children
                     .firstWhere((element) => element.name == routeSettings.name)
                     .page(),
               );

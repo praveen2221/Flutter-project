@@ -15,9 +15,9 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    
+
     Future.delayed(
-        const Duration(seconds: 2), () => Get.offNamed(Routes.dashboard));
+        const Duration(seconds: 2), () => Get.offNamed(Routes.homescreen));
   }
 
   @override

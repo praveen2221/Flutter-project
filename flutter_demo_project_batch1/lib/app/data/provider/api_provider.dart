@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as G;
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:http/http.dart' as http;
 import '../../routes/app_pages.dart';
 import '../../utils/snack_bar_utils.dart';
@@ -28,6 +27,10 @@ class APIProvider {
     return response;
   }
 
+  Future post(String endPoint) async {
+    final response = await http.post(Uri.parse(endPoint));
+    return response;
+  }
   // Future<AppResponse> get(String endPoint) async {
   //   try {
   //     final response = await _client.get(endPoint);
@@ -37,14 +40,14 @@ class APIProvider {
   //   }
   // }
 
-  Future<AppResponse> post(String endPoint, dynamic body) async {
-    try {
-      final response = await _client.post(endPoint, data: body);
-      return handleAPIResponse(response);
-    } catch (e) {
-      return handleAPIException(e);
-    }
-  }
+  // Future<AppResponse> post(String endPoint, dynamic body) async {
+  //   try {
+  //     final response = await _client.post(endPoint, data: body);
+  //     return handleAPIResponse(response);
+  //   } catch (e) {
+  //     return handleAPIException(e);
+  //   }
+  // }
 
   Future<AppResponse> delete(String endPoint) async {
     try {

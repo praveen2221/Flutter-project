@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class SnackbarUtils {
   static final _singleton = SnackbarUtils();
@@ -13,7 +10,7 @@ class SnackbarUtils {
   }
 
   failureSnackbar(String msg) {
-    normalSnackBar(msg, color:Colors.blue);
+    normalSnackBar(msg, color: Colors.blue);
   }
 
   normalSnackBar(String msg, {Color? color}) {

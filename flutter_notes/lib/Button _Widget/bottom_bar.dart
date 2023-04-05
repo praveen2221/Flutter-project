@@ -11,7 +11,7 @@ class _ButtomNavBarState extends State<ButtomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-        color: Color.fromARGB(255, 40, 205, 238),
+        color: const Color.fromARGB(255, 40, 205, 238),
         shape: const CircularNotchedRectangle(),
         child: Row(
           mainAxisSize: MainAxisSize.max,

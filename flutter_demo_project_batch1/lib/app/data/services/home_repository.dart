@@ -7,4 +7,9 @@ class HomeRepository {
     return await APIProvider.instance
         .get('http://demo6840779.mockable.io/businessCategoryList');
   }
+
+  Future updateHomeDetails() async {
+    return await APIProvider.instance
+        .post('http://demo6840779.mockable.io/insertRecord');
+  }
 }
